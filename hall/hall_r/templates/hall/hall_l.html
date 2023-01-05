@@ -1,0 +1,41 @@
+{% extends "hall/index.html" %}
+
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Name</td>
+            <td>Size</td>
+            <td>Location</td>
+            <td>
+                <a href="{% url 'hall_insert' %}" class="btn btn-outline-success">
+                     Add Hall
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hall in hall_l %}
+            <tr>
+                <td>{{hall.Name}}</td>
+                <td>{{hall.Size}}</td>
+                <td>{{hall.Location}}</td>
+                <td>
+                    <a href="{% url 'hall_update' hall.id %}" class="btn text-secondary px-0">
+                      Edit
+
+                    </a>
+                    <form action="{% url 'hall_delete' hall.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                             Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

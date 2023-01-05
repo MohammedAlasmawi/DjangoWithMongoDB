@@ -1,0 +1,31 @@
+{% extends "hall/index.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form.Name|as_crispy_field}}
+    {{form.Location|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-4">
+            {{form.Size|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form.Description|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg">
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'hall_l' %}" class="btn btn-secondary btn-block btn-lg">
+              View Halls
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}
